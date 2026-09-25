@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيارا | دار العطور الشرقية الفاخرة</title>
+    <!-- Google Fonts: Amiri for headings & Tajawal for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for luxury icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0d0d0d',
+                        darkCard: '#141414',
+                        darkBorder: '#262626',
+                        gold: '#d4af37',
+                        goldLight: '#f3e5ab',
+                        goldDark: '#aa8c2c',
+                        burgundy: '#4a0e17',
+                        burgundyDeep: '#2a050c',
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0d0d0d;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Amiri', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a0e17;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        /* Accessibility focus states */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid #d4af37;
+            outline-offset: 4px;
+        }
+        /* Subtle scroll reveal animation base */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Reduce motion accessibility preference */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 antialiased selection:bg-gold selection:text-black">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-darkBg/90 backdrop-blur-md border-b border-darkBorder transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <span class="font-heading text-3xl sm:text-4xl text-gold tracking-wider group-hover:text-goldLight transition-colors">سيارا</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400 font-tajawal hidden sm:inline-block border-r border-gray-700 pr-2 mr-1">Ciara</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm lg:text-base">
+                <a href="#hero" class="text-gray-300 hover:text-gold transition-colors">الرئيسية</a>
+                <a href="#story" class="text-gray-300 hover:text-gold transition-colors">قصة البراند</a>
+                <a href="#collection" class="text-gray-300 hover:text-gold transition-colors">المجموعة الفاخرة</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-gold transition-colors">آراء العملاء</a>
+                <a href="#contact" class="text-gray-300 hover:text-gold transition-colors">تواصل معنا</a>
+            </nav>
+
+            <!-- Header Action Button & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <a href="#collection" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-semibold px-5 py-2.5 rounded-full text-sm shadow-lg shadow-gold/10 hover:shadow-gold/30 hover:scale-105 transition-all duration-300">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>تسوقي المجموعة</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="فتح القائمة" class="md:hidden text-gold text-2xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-darkCard border-b border-darkBorder py-6 px-6 shadow-2xl transition-all">
+            <nav class="flex flex-col gap-4 text-center font-medium">
+                <a href="#hero" class="mobile-link text-gray-300 hover:text-gold py-2">الرئيسية</a>
+                <a href="#story" class="mobile-link text-gray-300 hover:text-gold py-2">قصة البراند</a>
+                <a href="#collection" class="mobile-link text-gray-300 hover:text-gold py-2">المجموعة الفاخرة</a>
+                <a href="#testimonials" class="mobile-link text-gray-300 hover:text-gold py-2">آراء العملاء</a>
+                <a href="#contact" class="mobile-link text-gray-300 hover:text-gold py-2">تواصل معنا</a>
+                <a href="#collection" class="mobile-link mt-2 inline-block bg-gold text-black font-semibold py-3 rounded-full">تسوقي المجموعة</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-gradient-to-b from-darkBg via-burgundyDeep/20 to-darkBg">
+            <!-- Decorative Background glow elements -->
+            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-burgundy/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 left-10 w-80 h-80 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 text-right space-y-6 reveal">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-burgundy/30 border border-burgundy text-goldLight text-xs sm:text-sm tracking-wider">
+                            <i class="fa-solid fa-crown text-gold"></i>
+                            <span>دار عطور عربية ناشئة وفاخرة</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold font-heading leading-tight text-white">
+                            أصالة الشرق <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-goldLight via-gold to-goldDark">بفخامة لا تُنسى</span>
+                        </h1>
+                        <p class="text-gray-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-2xl">
+                            سيارا دار عطور عربية ناشئة، تقدم مجموعة عطور فاخرة مستوحاة من خامات شرقية أصيلة: عود، عنبر، ورد طائفي. مصممة خصيصاً لتلهم حضورك الطاغي وذوقك الرفيع.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="#collection" class="bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-bold px-8 py-4 rounded-full shadow-lg shadow-gold/20 hover:scale-105 transition-all duration-300 flex items-center gap-3">
+                                <span>اكتشفي المجموعة</span>
+                                <i class="fa-solid fa-arrow-left-long"></i>
+                            </a>
+                            <a href="#story" class="border border-gold/40 hover:border-gold text-gold font-medium px-8 py-4 rounded-full transition-all duration-300 hover:bg-gold/10">
+                                قصتنا العطرية
+                            </a>
+                        </div>
+                        <!-- Key features highlights -->
+                        <div class="grid grid-cols-3 gap-4 pt-8 border-t border-darkBorder">
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-gold">100%</h3>
+                                <p class="text-xs text-gray-400 mt-1">خامات شرقية أصلية</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-gold">24+</h3>
+                                <p class="text-xs text-gray-400 mt-1">ساعة ثبات عطري</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-gold">فاخر</h3>
+                                <p class="text-xs text-gray-400 mt-1">تغليف ملكي خاص</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual / Perfume Bottle Representation -->
+                    <div class="lg:col-span-5 flex justify-center reveal">
+                        <div class="relative w-full max-w-sm sm:max-w-md aspect-[3/4] rounded-3xl bg-gradient-to-b from-darkCard to-burgundyDeep/40 border border-gold/30 p-8 shadow-2xl flex flex-col items-center justify-center text-center group">
+                            <!-- Glowing aura behind bottle -->
+                            <div class="absolute inset-0 rounded-3xl bg-gold/5 blur-xl group-hover:bg-gold/10 transition-all duration-500"></div>
+                            
+                            <!-- Artistic SVG Perfume Bottle -->
+                            <div class="relative z-10 w-48 sm:w-56 transition-transform duration-700 group-hover:scale-105">
+                                <svg viewBox="0 0 200 300" class="w-full h-auto drop-shadow-[0_15px_25px_rgba(212,175,55,0.2)]">
+                                    <!-- Cap -->
+                                    <path d="M75,20 L125,20 L130,55 L70,55 Z" fill="#d4af37" />
+                                    <rect x="85" y="10" width="30" height="10" rx="3" fill="#f3e5ab" />
+                                    <!-- Neck -->
+                                    <rect x="90" y="55" width="20" height="25" fill="#4a0e17" stroke="#d4af37" stroke-width="2" />
+                                    <!-- Body -->
+                                    <path d="M50,80 Q50,70 60,70 L140,70 Q150,70 150,80 L170,140 Q180,200 150,260 Q130,290 100,290 Q70,290 50,260 Q20,200 30,140 Z" fill="url(#bottleGrad)" stroke="#d4af37" stroke-width="2.5" />
+                                    <!-- Inner Liquid -->
+                                    <path d="M55,120 Q55,110 65,110 L135,110 Q145,110 145,120 L163,160 Q170,210 145,255 Q130,280 100,280 Q70,280 55,255 Q30,210 37,160 Z" fill="#4a0e17" opacity="0.8" />
+                                    <!-- Label -->
+                                    <rect x="65" y="130" width="70" height="90" rx="4" fill="#0d0d0d" stroke="#d4af37" stroke-width="1.5" />
+                                    <text x="100" y="160" font-family="Amiri, serif" font-size="18" fill="#d4af37" text-anchor="middle">سيارا</text>
+                                    <text x="100" y="180" font-family="Tajawal, sans-serif" font-size="8" fill="#f3e5ab" text-anchor="middle" letter-spacing="2">CIARA</text>
+                                    <line x1="80" y1="195" x2="120" y2="195" stroke="#d4af37" stroke-width="0.5" />
+                                    <!-- Gradient definitions -->
+                                    <defs>
+                                        <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#2a050c" />
+                                            <stop offset="50%" stop-color="#4a0e17" />
+                                            <stop offset="100%" stop-color="#141414" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+
+                            <div class="relative z-10 mt-6">
+                                <span class="text-xs uppercase tracking-widest text-gold">إصدار حصري</span>
+                                <h3 class="font-heading text-xl text-white mt-1">جوهر سيارا الملكي</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="py-24 bg-darkCard/50 border-y border-darkBorder relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Graphic/Artistic Element representing philosophy -->
+                    <div class="lg:col-span-5 reveal">
+                        <div class="relative p-8 rounded-3xl bg-gradient-to-br from-burgundy/20 via-darkCard to-darkBg border border-gold/20 shadow-xl overflow-hidden text-center">
+                            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-gold/10 rounded-full blur-2xl"></div>
+                            
+                            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-burgundy/40 border border-gold/50 flex items-center justify-center text-gold text-3xl shadow-lg">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+
+                            <h3 class="font-heading text-2xl text-gold mb-2">فلسفة الاسم والابتكار</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                "سيارا" مستوحاة من عراقة التراث الشرقي ولمسات الحداثة الراقية، حيث تلتقي الأصالة بالفخامة في كل قطرة عطر.
+                            </p>
+
+                            <div class="mt-8 grid grid-cols-2 gap-4 text-center">
+                                <div class="p-4 rounded-2xl bg-darkBg border border-darkBorder">
+                                    <span class="block text-gold font-heading text-lg">الرؤية</span>
+                                    <span class="text-xs text-gray-400">إعادة صياغة العطور الشرقية</span>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-darkBg border border-darkBorder">
+                                    <span class="block text-gold font-heading text-lg">الجودة</span>
+                                    <span class="text-xs text-gray-400">مكونات نادرة ومنتقاة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story Text Content -->
+                    <div class="lg:col-span-7 text-right space-y-6 reveal">
+                        <span class="text-gold text-sm tracking-widest uppercase font-semibold block">قصة البراند</span>
+                        <h2 class="text-3xl sm:text-5xl font-bold font-heading text-white">
+                            حين يروي العطر حكاية أصالتك
+                        </h2>
+                        <p class="text-gray-300 leading-relaxed text-base sm:text-lg">
+                            في قلب الصحراء الساحرة وحيث تتلاقى رياح الشرق العذبة مع نفحات العود المعتق، نشأت دار <strong class="text-gold">سيارا</strong>. لم نكن نسعى لإنتاج عطر عادي، بل لابتكار بصمة عطرية شخصية تعبر عن هويتك الفريدة، وتترك انطباعاً لا يُمحى في كل مكان تحلين فيه.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed text-sm sm:text-base">
+                            نختار بعناية فائقة أجود أنواع العود الملكي، والعنبر الدافئ، وزهور الورد الطائفي النادرة، لنقدم لك توليفات ساحرة تناسب الذوق الرفيع وتليق بمناسباتك الاستثنائية.
+                        </p>
+
+                        <div class="pt-4 flex items-center gap-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-200">تركيز عالي (Eau de Parfum)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-200">مكونات طبيعية نقية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="collection" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <span class="text-gold text-sm tracking-widest uppercase font-semibold block mb-2">إصدارات استثنائية</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold font-heading text-white mb-4">المجموعة الفاخرة</h2>
+                    <p class="text-gray-400 text-sm sm:text-base">استكشفي تشكيلتنا المختارة بعناية من العطور الشرقية التي تعكس تفردك وأناقتك.</p>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Product 1: عطر عود سيارا الملكي -->
+                    <div class="bg-darkCard rounded-3xl border border-darkBorder hover:border-gold/50 transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-xl reveal">
+                        <div>
+                            <!-- Product Image / Visual Box -->
+                            <div class="relative h-72 bg-gradient-to-b from-burgundyDeep/30 to-darkBg flex items-center justify-center p-6 overflow-hidden border-b border-darkBorder">
+                                <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute top-4 right-4 bg-burgundy text-goldLight text-xs px-3 py-1 rounded-full border border-gold/30">الأكثر مبيعاً</div>
+                                
+                                <!-- Perfume bottle SVG illustration 1 -->
+                                <svg viewBox="0 0 150 220" class="w-32 h-auto drop-shadow-[0_10px_20px_rgba(212,175,55,0.25)] group-hover:scale-105 transition-transform duration-500">
+                                    <path d="M55,15 L95,15 L98,40 L52,40 Z" fill="#d4af37" />
+                                    <rect x="62" y="40" width="26" height="20" fill="#4a0e17" stroke="#d4af37" stroke-width="1.5" />
+                                    <path d="M35,60 Q35,50 45,50 L105,50 Q115,50 115,60 L130,110 Q140,160 110,200 Q95,215 75,215 Q55,215 40,200 Q10,160 20,110 Z" fill="#2a050c" stroke="#d4af37" stroke-width="2" />
+                                    <rect x="50" y="90" width="50" height="70" rx="3" fill="#0d0d0d" stroke="#d4af37" stroke-width="1" />
+                                    <text x="75" y="125" font-family="Amiri, serif" font-size="14" fill="#d4af37" text-anchor="middle">عود ملكي</text>
+                                    <text x="75" y="142" font-family="Tajawal, sans-serif" font-size="7" fill="#f3e5ab" text-anchor="middle">CIARA OUD</text>
+                                </svg>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-heading text-2xl text-white group-hover:text-gold transition-colors">عطر عود سيارا الملكي</h3>
+                                    <span class="text-gold font-bold text-lg">450 ر.س</span>
+                                </div>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    توليفه ساحرة من أجود أنواع العود المعتق مع لمسات خشبية دافئة تمنحك حضوراً ملكياً طاغياً.
+                                </p>
+
+                                <!-- Fragrance Notes Pyramid -->
+                                <div class="bg-darkBg/80 p-3.5 rounded-xl border border-darkBorder space-y-1.5 text-xs">
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">مقدمة العطر:</span>
+                                        <span>برغموت، الزعفران الفاخر</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قلب العطر:</span>
+                                        <span>العود المعتق، الورد البلدي</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قاعدة العطر:</span>
+                                        <span>العنبر، خشب الصندل</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="p-6 pt-0">
+                            <button onclick="addToCart('عطر عود سيارا الملكي', '450 ر.س')" class="w-full bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-gold/20 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>أضيفي إلى السلة</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: عطر عنبر سيارا الدافئ -->
+                    <div class="bg-darkCard rounded-3xl border border-darkBorder hover:border-gold/50 transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-xl reveal">
+                        <div>
+                            <!-- Product Image / Visual Box -->
+                            <div class="relative h-72 bg-gradient-to-b from-burgundyDeep/30 to-darkBg flex items-center justify-center p-6 overflow-hidden border-b border-darkBorder">
+                                <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute top-4 right-4 bg-burgundy text-goldLight text-xs px-3 py-1 rounded-full border border-gold/30">جديد</div>
+                                
+                                <!-- Perfume bottle SVG illustration 2 -->
+                                <svg viewBox="0 0 150 220" class="w-32 h-auto drop-shadow-[0_10px_20px_rgba(212,175,55,0.25)] group-hover:scale-105 transition-transform duration-500">
+                                    <path d="M60,15 L90,15 L90,40 L60,40 Z" fill="#d4af37" />
+                                    <rect x="65" y="40" width="20" height="20" fill="#4a0e17" stroke="#d4af37" stroke-width="1.5" />
+                                    <rect x="40" y="60" width="70" height="150" rx="15" fill="#3a0910" stroke="#d4af37" stroke-width="2" />
+                                    <rect x="50" y="85" width="50" height="70" rx="3" fill="#0d0d0d" stroke="#d4af37" stroke-width="1" />
+                                    <text x="75" y="120" font-family="Amiri, serif" font-size="14" fill="#d4af37" text-anchor="middle">عنبر دافئ</text>
+                                    <text x="75" y="137" font-family="Tajawal, sans-serif" font-size="7" fill="#f3e5ab" text-anchor="middle">CIARA AMBER</text>
+                                </svg>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-heading text-2xl text-white group-hover:text-gold transition-colors">عطر عنبر سيارا الدافئ</h3>
+                                    <span class="text-gold font-bold text-lg">390 ر.س</span>
+                                </div>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    مزيج ساحر يغلف الحواس بنفحات العنبر الفاخر والفانيليا الشرقية ليمنحك شعوراً بالدفء والجاذبية.
+                                </p>
+
+                                <!-- Fragrance Notes Pyramid -->
+                                <div class="bg-darkBg/80 p-3.5 rounded-xl border border-darkBorder space-y-1.5 text-xs">
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">مقدمة العطر:</span>
+                                        <span>الفلفل الوردي، الهيل</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قلب العطر:</span>
+                                        <span>العنبر الخام، الباتشولي</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قاعدة العطر:</span>
+                                        <span>فانيليا مدغشقر، المسك</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="p-6 pt-0">
+                            <button onclick="addToCart('عطر عنبر سيارا الدافئ', '390 ر.س')" class="w-full bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-gold/20 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>أضيفي إلى السلة</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: عطر ورد طائفي سيارا الساحر -->
+                    <div class="bg-darkCard rounded-3xl border border-darkBorder hover:border-gold/50 transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-xl reveal">
+                        <div>
+                            <!-- Product Image / Visual Box -->
+                            <div class="relative h-72 bg-gradient-to-b from-burgundyDeep/30 to-darkBg flex items-center justify-center p-6 overflow-hidden border-b border-darkBorder">
+                                <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute top-4 right-4 bg-burgundy text-goldLight text-xs px-3 py-1 rounded-full border border-gold/30">محدود</div>
+                                
+                                <!-- Perfume bottle SVG illustration 3 -->
+                                <svg viewBox="0 0 150 220" class="w-32 h-auto drop-shadow-[0_10px_20px_rgba(212,175,55,0.25)] group-hover:scale-105 transition-transform duration-500">
+                                    <circle cx="75" cy="25" r="12" fill="#d4af37" />
+                                    <rect x="70" y="37" width="10" height="15" fill="#4a0e17" stroke="#d4af37" stroke-width="1" />
+                                    <path d="M75,52 C110,52 135,80 135,130 C135,180 110,210 75,210 C40,210 15,180 15,130 C15,80 40,52 75,52 Z" fill="#4a0e17" stroke="#d4af37" stroke-width="2" />
+                                    <rect x="45" y="95" width="60" height="70" rx="30" fill="#0d0d0d" stroke="#d4af37" stroke-width="1" />
+                                    <text x="75" y="127" font-family="Amiri, serif" font-size="13" fill="#d4af37" text-anchor="middle">ورد طائفي</text>
+                                    <text x="75" y="143" font-family="Tajawal, sans-serif" font-size="7" fill="#f3e5ab" text-anchor="middle">CIARA ROSE</text>
+                                </svg>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-heading text-2xl text-white group-hover:text-gold transition-colors">عطر ورد طائفي سيارا</h3>
+                                    <span class="text-gold font-bold text-lg">420 ر.س</span>
+                                </div>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    انتعاش الورد الطائفي الأصيل المقطوف بعناية، ممزوج بلمسات ناعمة من الأخشاب البيضاء لجمال مفعم بالحياة.
+                                </p>
+
+                                <!-- Fragrance Notes Pyramid -->
+                                <div class="bg-darkBg/80 p-3.5 rounded-xl border border-darkBorder space-y-1.5 text-xs">
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">مقدمة العطر:</span>
+                                        <span>توت العليق، اليوسفي</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قلب العطر:</span>
+                                        <span>الورد الطائفي النقي، الياسمين</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-300">
+                                        <span class="text-gold font-medium">قاعدة العطر:</span>
+                                        <span>المسك الأبيض، أخشاب الأرز</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="p-6 pt-0">
+                            <button onclick="addToCart('عطر ورد طائفي سيارا', '420 ر.س')" class="w-full bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-gold/20 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>أضيفي إلى السلة</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-24 bg-darkCard/50 border-y border-darkBorder relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <span class="text-gold text-sm tracking-widest uppercase font-semibold block mb-2">ثقة عملائنا</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold font-heading text-white mb-4">آراء عميلات سيارا</h2>
+                    <p class="text-gray-400 text-sm sm:text-base">تجارب حقيقية من نساء ذوات ذوق رفيع اخترن عطور سيارا لترافقهن في أوقاتهن المميزة.</p>
+                </div>
+
+                <!-- Testimonials Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Testimonial 1 -->
+                    <div class="p-8 rounded-3xl bg-darkBg border border-darkBorder relative flex flex-col justify-between shadow-lg reveal">
+                        <div class="absolute top-6 left-6 text-gold/20 text-4xl font-heading">“</div>
+                        <div class="space-y-4">
+                            <div class="flex text-gold text-sm gap-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic">
+                                "عطر العود الملكي من سيارا هو اكتشاف الموسم بالنسبة لي. الثبات خيالي ويبقى في الأقمشة لأيام. راقٍ جداً وغير مزعج."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-6 mt-6 border-t border-darkBorder">
+                            <div class="w-12 h-12 rounded-full bg-burgundy/40 border border-gold/40 flex items-center justify-center text-gold font-heading text-lg">
+                                س
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-white font-bold">سارة العمري</h4>
+                                <span class="text-xs text-gray-400">الرياض</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="p-8 rounded-3xl bg-darkBg border border-darkBorder relative flex flex-col justify-between shadow-lg reveal">
+                        <div class="absolute top-6 left-6 text-gold/20 text-4xl font-heading">“</div>
+                        <div class="space-y-4">
+                            <div class="flex text-gold text-sm gap-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic">
+                                "طلبت عطر الورد الطائفي والتغليف كان فاخراً للغاية كأنه هدية ملكية. الرائحة ناعمة وفواحة وتستحق كل ريال."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-6 mt-6 border-t border-darkBorder">
+                            <div class="w-12 h-12 rounded-full bg-burgundy/40 border border-gold/40 flex items-center justify-center text-gold font-heading text-lg">
+                                ن
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-white font-bold">نورة القحطاني</h4>
+                                <span class="text-xs text-gray-400">جدة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="p-8 rounded-3xl bg-darkBg border border-darkBorder relative flex flex-col justify-between shadow-lg reveal">
+                        <div class="absolute top-6 left-6 text-gold/20 text-4xl font-heading">“</div>
+                        <div class="space-y-4">
+                            <div class="flex text-gold text-sm gap-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic">
+                                "عنبر سيارا هو عطري المفضلة للمساء. تركيبة دافئة ومميزة تذكرني بالبخور الفاخر ولكن بطابع عصري أنيق."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-6 mt-6 border-t border-darkBorder">
+                            <div class="w-12 h-12 rounded-full bg-burgundy/40 border border-gold/40 flex items-center justify-center text-gold font-heading text-lg">
+                                ر
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-white font-bold">ريم الشمري</h4>
+                                <span class="text-xs text-gray-400">دبي</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-burgundyDeep via-darkCard to-burgundyDeep opacity-80 pointer-events-none"></div>
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="p-8 sm:p-12 rounded-3xl bg-darkCard border border-gold/30 shadow-2xl text-center space-y-6 reveal">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold text-2xl">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    
+                    <span class="text-xs uppercase tracking-widest text-gold font-semibold">حصرياً للمشتركين الجدد</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">انضمي إلى نادي عطور سيارا</h2>
+                    <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto">
+                        اشتركي الآن في البريد الإخباري واححصلي على خصم فوري بقيمة <strong class="text-gold">15%</strong> على طلبك الأول، بالإضافة إلى دعوات خاصة للإصدارات المحدودة.
+                    </p>
+
+                    <form id="newsletter-form" onsubmit="handleNewsletter(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 pt-2">
+                        <input type="email" id="newsletter-email" required placeholder="أدخلي بريدك الإلكتروني..." class="flex-1 bg-darkBg border border-darkBorder rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-gold transition-colors">
+                        <button type="submit" class="bg-gradient-to-r from-goldDark via-gold to-goldLight text-black font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-gold/20 transition-all duration-300 whitespace-nowrap">
+                            احصلي على الخصم
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-darkCard border-t border-darkBorder pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Col 1: About Brand -->
+                <div class="space-y-4">
+                    <span class="font-heading text-3xl text-gold tracking-wider block">سيارا</span>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        دار عطور عربية ناشئة، تقدم تشكيلة فريدة من العطور الشرقية المصنوعة بأعلى معايير الفخامة والجودة.
+                    </p>
+                    <div class="flex gap-4 pt-2">
+                        <a href="#" aria-label="تواصل عبر انستغرام" class="w-10 h-10 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-gold hover:border-gold transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="تواصل عبر تيك توك" class="w-10 h-10 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-gold hover:border-gold transition-colors">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="#" aria-label="تواصل عبر سناب شات" class="w-10 h-10 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-gold hover:border-gold transition-colors">
+                            <i class="fa-brands fa-snapchat"></i>
+                        </a>
+                        <a href="#" aria-label="تواصل عبر واتساب" class="w-10 h-10 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-gold hover:border-gold transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="font-heading text-xl text-white">روابط سريعة</h3>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#hero" class="hover:text-gold transition-colors">الرئيسية</a></li>
+                        <li><a href="#story" class="hover:text-gold transition-colors">قصة البراند</a></li>
+                        <li><a href="#collection" class="hover:text-gold transition-colors">المجموعة الفاخرة</a></li>
+                        <li><a href="#testimonials" class="hover:text-gold transition-colors">آراء العملاء</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Customer Service -->
+                <div class="space-y-4">
+                    <h3 class="font-heading text-xl text-white">خدمة العملاء</h3>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-gold transition-colors">سياسة الشحن والتوصيل</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">الاستبدال والاسترجاع</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">الشروط والأحكام</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="font-heading text-xl text-white">تواصل معنا</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-gold"></i>
+                            <span>المملكة العربية السعودية، الرياض</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-gold"></i>
+                            <span dir="ltr">+966 50 000 0000</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-gold"></i>
+                            <span>support@ciara-perfumes.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright bar -->
+            <div class="pt-8 border-t border-darkBorder flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>جميع Derechos محفوظة © 2026 دار عطور سيارا (Ciara Perfumes).</p>
+                <p>تصميم وبرمجة فاخرة لبراند سيارا</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Component -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-500 bg-darkCard border border-gold text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h4 id="toast-title" class="font-bold text-sm text-gold">تمت الإضافة بنجاح</h4>
+            <p id="toast-msg" class="text-xs text-gray-300">تمت إضافة العطر إلى سلة التسوق الخاصة بك.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Sticky Navbar background adjustment on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('shadow-xl', 'bg-darkBg/95');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-darkBg/95');
+            }
+        });
+
+        // Scroll Reveal Animation (Respects prefers-reduced-motion)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            const windowHeight = window.innerHeight;
+            const revealPoint = 100;
+
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('load', checkReveal);
+
+        // Toast Notification System (Replaces alert() completely)
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+
+        // Add to cart interactive function
+        function addToCart(productName, price) {
+            showToast('تمت الإضافة إلى السلة', `تمت إضافة "${productName}" بسعر ${price} بنجاح.`);
+        }
+
+        // Newsletter subscription handler
+        function handleNewsletter(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const email = emailInput.value;
+            if (email) {
+                showToast('اشتراك ناجح!', 'تم تفعيل خصم 15% وتوجيهك لنادي سيارا الفاخر.');
+                emailInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
